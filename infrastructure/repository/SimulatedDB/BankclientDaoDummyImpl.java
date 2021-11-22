@@ -1,0 +1,53 @@
+package infrastructure.repository.SimulatedDB;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import domain.model.entities.Bankclient;
+import domain.model.valueobjects.Iban;
+
+/**
+ * Dummy Implementation
+ */
+
+public class BankclientDaoDummyImpl implements BankclientDao {
+    private ArrayList<Bankclient> listOfBankclients;
+
+    /**
+     * Dummy Constructor, 3 Test instances are created when program is started.
+     */
+    public BankclientDaoDummyImpl() {
+        String uuid1 = UUID.randomUUID().toString();
+        String uuid2 = UUID.randomUUID().toString();
+        String uuid3 = UUID.randomUUID().toString();
+        listOfBankclients.add(new Bankclient(uuid1, "Hans Wurst", new Iban("AT611904300234573201")));
+        listOfBankclients.add(new Bankclient(uuid2, "Peter Strele", new Iban("AT611904300234573202")));
+        listOfBankclients.add(new Bankclient(uuid3, "Max Mustermann", new Iban("AT611904300234573203")));
+    }
+
+    @Override
+    public void insertBankclient(Bankclient bankclient) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void updateBankclient(Bankclient bankclient) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void deleteBankclient(String uuid) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public List<Bankclient> getAllBankclients() {
+
+        return this.listOfBankclients;
+    }
+
+}

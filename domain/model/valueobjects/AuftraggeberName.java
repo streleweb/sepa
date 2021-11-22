@@ -1,4 +1,4 @@
-package domain.model.entities;
+package domain.model.valueobjects;
 
 /**
  * Name of the sender of a payment. Value object, which only gets instanced if

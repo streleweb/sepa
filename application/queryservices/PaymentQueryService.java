@@ -2,6 +2,7 @@ package application.queryservices;
 
 import java.util.List;
 
+import application.utilityclasses.ReadOrWriteToCSV;
 import domain.model.aggregates.Payment;
 import domain.model.commands.PaymentCommand;
 import infrastructure.repository.SimulatedDB.PaymentsDao;
@@ -26,6 +27,15 @@ public class PaymentQueryService {
     // get list of all aborted payments
     public List<PaymentCommand> getListOfAllAbortedPayments() {
         return paymentsDao.getAllAbortedPayments();
+    }
+
+    // CSV is being printed out by ReadOrWriteToCSV Utility-Class
+    public void getListOfAllSuccessfulPaymentsFromCSV() {
+        ReadOrWriteToCSV.readSuccessfulCsv();
+    }
+
+    public void getListOfAllAbortedPaymentsFromCSV() {
+        ReadOrWriteToCSV.readAbortedCsv();
     }
 
 }

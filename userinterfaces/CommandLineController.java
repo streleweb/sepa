@@ -1,5 +1,7 @@
 package userinterfaces;
 
+import java.util.List;
+
 /**
  * CMD-Controller
  * Has instances of the Service-Layer-Classes, which get called here to perform the business logic.
@@ -9,6 +11,7 @@ import application.commandservices.BankclientCommandService;
 import application.commandservices.PaymentCommandService;
 import application.queryservices.BankclientQueryService;
 import application.queryservices.PaymentQueryService;
+import domain.model.aggregates.Payment;
 import domain.model.aggregates.PaymentId;
 import domain.model.commands.PaymentCommand;
 import userinterfaces.mapper.PaymentCMDAssembler;
@@ -16,11 +19,11 @@ import userinterfaces.resources.PaymentResource;
 
 public class CommandLineController {
     // would normally be autowired, dependency injection
-    private BankclientCommandService bankclientCommandService;
+    private BankclientCommandService bankclientCommandService = new BankclientCommandService();
     private PaymentCommandService paymentCommandService = new PaymentCommandService();
 
-    private BankclientQueryService bankclientQueryService;
-    private PaymentQueryService paymentQueryService;
+    private BankclientQueryService bankclientQueryService = new BankclientQueryService();
+    private PaymentQueryService paymentQueryService = new PaymentQueryService();
 
     /**
      * Takes the UserInput-Data and creates PaymentResource, normally the Parameter
@@ -75,6 +78,26 @@ public class CommandLineController {
             // if not successful
             return null;
         }
+    }
+
+    public List<Payment> getSuccessFulPaymentsFromDB() {
+        return paymentQueryService.getListOfAllSuccessfulPayments();
+    }
+
+    // returns command object, since it got aborted and no instance of a new payment
+    // in the aggregate root was created.
+    public List<PaymentCommand> getAbortedPaymentsFromDB() {
+        return paymentQueryService.getListOfAllAbortedPayments();
+    }
+
+    // delegated to queryservice and then to Utility class (ReadOrWriteToCSV)
+    public void readSuccessfulFromCSV() {
+        paymentQueryService.getListOfAllSuccessfulPaymentsFromCSV();
+    }
+
+    // delegated to queryservice and then to Utility class (ReadOrWriteToCSV)
+    public void readAbortedFromCSV() {
+        paymentQueryService.getListOfAllAbortedPaymentsFromCSV();
     }
 
 }

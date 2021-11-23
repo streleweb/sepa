@@ -10,7 +10,7 @@ public class PaymentCMDAssembler {
     public static PaymentCommand toCommandFromCMD(PaymentResource paymentResource) {
 
         // if VERWENDUNGSZWECK is set
-        if (paymentResource.getZahlungsReferenz().isEmpty() && !paymentResource.getVerwendungsZweck().isEmpty()) {
+        if (paymentResource.getZahlungsReferenz() == null && (paymentResource.getVerwendungsZweck() != null)) {
             return new PaymentCommand(
 
                     paymentResource.getRecipientIban(), paymentResource.getAuftraggeberIban(),

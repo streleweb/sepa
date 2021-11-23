@@ -21,39 +21,39 @@ public class PaymentResource {
 
     // only getters
     public String getRecipientIban() {
-        return recipientIban;
+        return this.recipientIban;
     }
 
     public String getAuftraggeberIban() {
-        return auftraggeberIban;
+        return this.auftraggeberIban;
     }
 
     public String getAuftraggeberName() {
-        return auftraggeberName;
+        return this.auftraggeberName;
     }
 
     public String getRecipientName() {
-        return recipientName;
+        return this.recipientName;
     }
 
     public double getPaymentAmount() {
-        return paymentAmount;
+        return this.paymentAmount;
     }
 
     public String getAuftraggeberAdresse() {
-        return auftraggeberAdresse;
+        return this.auftraggeberAdresse;
     }
 
     public String getRecipientAdresse() {
-        return recipientAdresse;
+        return this.recipientAdresse;
     }
 
     public String getVerwendungsZweck() {
-        return verwendungsZweck;
+        return this.verwendungsZweck;
     }
 
     public String getZahlungsReferenz() {
-        return zahlungsReferenz;
+        return this.zahlungsReferenz;
     }
 
     /**
@@ -120,10 +120,12 @@ public class PaymentResource {
          * withVerwendungsZweck returns a Builder-Object
          */
         public Builder withVerwendungsZweck(String verwendungsZweck) {
-            if (verwendungsZweck == null || verwendungsZweck.isEmpty())
-                this.verwendungsZweck = "Empty";
-            else
+            if (verwendungsZweck == null || verwendungsZweck.isEmpty()) {
+                this.verwendungsZweck = null;
+            } else {
                 this.verwendungsZweck = verwendungsZweck;
+                this.zahlungsReferenz = null;
+            }
             return this;
         }
 
@@ -131,10 +133,12 @@ public class PaymentResource {
          * withZahlungsReferenz returns a Builder-Object
          */
         public Builder withZahlungsReferenz(String zahlungsReferenz) {
-            if (zahlungsReferenz == null || zahlungsReferenz.isEmpty())
-                this.zahlungsReferenz = "Empty";
-            else
+            if (zahlungsReferenz == null || zahlungsReferenz.isEmpty()) {
+                this.zahlungsReferenz = null;
+            } else {
                 this.zahlungsReferenz = zahlungsReferenz;
+                this.verwendungsZweck = null; // both cannot be filled in
+            }
             return this;
         }
 
@@ -144,8 +148,8 @@ public class PaymentResource {
         public PaymentResource build() {
             // small validation, so program responds faster. Real validation happens in the
             // servicelayer
-            if (recipientIban.isEmpty() || auftraggeberIban.isEmpty() || recipientName.isEmpty()
-                    || auftraggeberName.isEmpty() || ((paymentAmount + "").isEmpty())) {
+            if (recipientIban == null || auftraggeberIban == null || recipientName == null || auftraggeberName == null
+                    || (paymentAmount == 0.0)) {
                 System.out.println("Kein Feld darf leer sein!");
                 return null;
                 // throw new Exception("Leere Eingabe erkannt...");
@@ -160,15 +164,15 @@ public class PaymentResource {
                 paymentResource.paymentAmount = this.paymentAmount;
 
                 // optional
-                if (!this.auftraggeberAdresse.isEmpty())
+                if (this.auftraggeberAdresse != null)
                     paymentResource.auftraggeberAdresse = this.auftraggeberAdresse;
-                if (!this.recipientAdresse.isEmpty())
+                if (this.recipientAdresse != null)
                     paymentResource.recipientAdresse = this.recipientAdresse;
                 // validate that zahlungsReferenz is empty, if verwendungsZweck was filled in
-                if (!this.verwendungsZweck.isEmpty() && this.zahlungsReferenz.isEmpty())
+                if ((this.verwendungsZweck != null) && (this.zahlungsReferenz == null))
                     paymentResource.verwendungsZweck = this.verwendungsZweck;
                 // validate that verwendungsZweck is empty, if zahlungsReferenz was filled in
-                if (this.verwendungsZweck.isEmpty() && !this.zahlungsReferenz.isEmpty())
+                if ((this.verwendungsZweck == null) && (this.zahlungsReferenz == null))
                     paymentResource.zahlungsReferenz = this.zahlungsReferenz;
 
                 // here could be observerinfo

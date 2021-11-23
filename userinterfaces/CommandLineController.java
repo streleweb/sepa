@@ -15,8 +15,9 @@ import userinterfaces.mapper.PaymentCMDAssembler;
 import userinterfaces.resources.PaymentResource;
 
 public class CommandLineController {
+    // would normally be autowired, dependency injection
     private BankclientCommandService bankclientCommandService;
-    private PaymentCommandService paymentCommandService;
+    private PaymentCommandService paymentCommandService = new PaymentCommandService();
 
     private BankclientQueryService bankclientQueryService;
     private PaymentQueryService paymentQueryService;
@@ -41,15 +42,13 @@ public class CommandLineController {
         // transform Resource to command object, just for display purposes, this makes
         // no sense in this application ;D
         PaymentCommand paymentCommand = PaymentCMDAssembler.toCommandFromCMD(paymentResource);
-        try {
-            PaymentId paymentId = paymentCommandService.createPayment(paymentCommand);
-            // if successful
-            return paymentId;
-        } catch (Exception e) {
-            System.err.println("Could not create Payment.");
-            // if not successful
-            return null;
-        }
+
+        PaymentId paymentId = paymentCommandService.createPayment(paymentCommand);
+        // if successful
+        return paymentId;
+
+        // if not successful
+
     }
 
     public PaymentId newZahlungsReferenzPayment(double paymentAmount, String recipientIban, String auftraggeberIban,
@@ -69,7 +68,8 @@ public class CommandLineController {
             // if successful
             return paymentId;
         } catch (Exception e) {
-            System.err.println("Could not create Payment.");
+            e.printStackTrace();
+            System.err.println("Could not create ZahlungsReferenzPayment.");
             // if not successful
             return null;
         }

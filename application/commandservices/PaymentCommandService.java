@@ -1,5 +1,6 @@
 package application.commandservices;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import application.utilityclasses.ReadOrWriteToCSV;
@@ -7,16 +8,18 @@ import domain.model.aggregates.Payment;
 import domain.model.aggregates.PaymentId;
 import domain.model.commands.PaymentCommand;
 import infrastructure.repository.SimulatedDB.PaymentsDao;
+import infrastructure.repository.SimulatedDB.PaymentsDaoDummyImpl;
 
 /**
  * Business Logic for Payments implemented here.
  */
 public class PaymentCommandService {
-    private PaymentsDao paymentsDao;
+    // would normally be autowired via dependency injection
+    private PaymentsDao paymentsDao = new PaymentsDaoDummyImpl();
 
-    public PaymentId createPayment(PaymentCommand paymentCommand) throws Exception {
+    public PaymentId createPayment(PaymentCommand paymentCommand) {
         // todo validate with queryservice.doesstuffexist etc.
-
+        // System.out.println("Debug");
         // if !exists and all validation passes (WRITE VALIDATION CLASSES)
         String uuidString = UUID.randomUUID().toString().toUpperCase();
         String uuid = uuidString.substring(0, uuidString.indexOf("-")); // from index 0 to - sign
@@ -32,7 +35,12 @@ public class PaymentCommandService {
         paymentsDao.insertNewSuccessfulPayment(payment);
         // create new Successful payment value object and save it to the successful.csv
         // file
-        ReadOrWriteToCSV.writeToSuccessfulPayments(paymentCommand);
+        try {
+            ReadOrWriteToCSV.writeToSuccessfulPayments(paymentCommand);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         return new PaymentId(uuid);
 

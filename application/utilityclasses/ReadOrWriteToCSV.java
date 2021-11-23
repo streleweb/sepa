@@ -3,6 +3,7 @@ package application.utilityclasses;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,11 +22,13 @@ public class ReadOrWriteToCSV {
 
     // write to successful payments CSV
     public static void writeToSuccessfulPayments(PaymentCommand paymentCommand) throws IOException {
-        FileWriter fileWriter = null;
+        // File successFile = new File("C:\\successful.csv");
+        // successFile.createNewFile(); // if file already exists will do nothing
+        // new FileOutputStream("C:" + File.separator + "successful.csv", true).close();
 
+        String filePath = "D:" + File.separator + "successful.csv";
+        FileWriter fileWriter = new FileWriter(filePath);
         try {
-            String filePath = "C:\\successful.csv";
-            fileWriter = new FileWriter(filePath);
 
             fileWriter.append("id, auftraggIBAN, recipientIBAN, auftraggNAME, recipientNAME, amount");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentId()));
@@ -52,11 +55,15 @@ public class ReadOrWriteToCSV {
 
     // write to aborted payments CSV
     public static void writeToAbortedPayments(PaymentCommand paymentCommand) throws IOException {
-        FileWriter fileWriter = null;
+        // File abortedFile = new File("C:\\aborted.csv");
+        new FileOutputStream("C:\\aborted.csv", true).close();
+        // abortedFile.createNewFile(); // if file already exists will do nothing
+        // FileOutputStream oFile = new FileOutputStream(yourFile, false);
+
+        String filePath = "C:\\aborted.csv";
+        FileWriter fileWriter = new FileWriter(filePath);
 
         try {
-            String filePath = "C:\\aborted.csv";
-            fileWriter = new FileWriter(filePath);
 
             fileWriter.append("id, auftraggIBAN, recipientIBAN, auftraggNAME, recipientNAME, amount");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentId()));

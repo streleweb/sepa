@@ -6,9 +6,9 @@ import java.util.List;
 import domain.model.aggregates.Payment;
 
 public class PaymentsDaoDummyImpl implements PaymentsDao {
-    private ArrayList<Payment> listOfSuccessfulPayments;
-    private ArrayList<Payment> listOfAbortedPayments;
-    private ArrayList<Payment> listOfAllPayments;
+    private ArrayList<Payment> listOfSuccessfulPayments = new ArrayList<>();
+    private ArrayList<Payment> listOfAbortedPayments = new ArrayList<>();
+    private ArrayList<Payment> listOfAllPayments = new ArrayList<>();
 
     @Override
     public void insertNewSuccessfulPayment(Payment payment) {

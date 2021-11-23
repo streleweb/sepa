@@ -32,8 +32,13 @@ public class PaymentCommandService {
             // (commandhandler)
             Payment payment = new Payment(paymentCommand);
 
+            System.out.println("Successfully created Payment with ID " + paymentCommand.getPaymentId()
+                    + " from Customer " + paymentCommand.getAuftraggeberName() + " to Customer "
+                    + paymentCommand.getRecipientName() + " with Amount: EUR " + paymentCommand.getPaymentAmount()
+                    + " [FromPaymentCommandService]");
             // persist the Data to our pseudo repository / DB
             paymentsDao.insertNewSuccessfulPayment(payment);
+            paymentsDao.getAllSuccessfulPayments();
             // create new Successful payment value object and save it to the successful.csv
             // file
             try {
@@ -57,6 +62,11 @@ public class PaymentCommandService {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
+            System.out.println("Payment aborted and saved to DB and CSV. " + paymentCommand.getPaymentId()
+                    + " from Customer " + paymentCommand.getAuftraggeberName() + " to Customer "
+                    + paymentCommand.getRecipientName() + " with Amount: EUR " + paymentCommand.getPaymentAmount()
+                    + " [FromPaymentCommandService]");
 
             return null;
         }

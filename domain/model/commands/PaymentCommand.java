@@ -138,4 +138,32 @@ public class PaymentCommand {
         this.zahlungsReferenz = zahlungsReferenz;
     }
 
+    @Override
+    public String toString() {
+        return "PaymentId: " + this.paymentId + ", EmpfaengerIBAN: " + this.recipientIban + ", Auftragg.IBAN: "
+                + this.auftraggeberIban + ", Betrag in EUR: " + this.paymentAmount + "\n";
+    }
+
+    // get Strings
+
+    public String getAuftraggeberNameString() {
+        return this.auftraggeberName + "";
+    }
+
+    public String getAuftraggeberIbanString() {
+        return this.auftraggeberIban + "";
+    }
+
+    public String getRecipientNameString() {
+        return this.recipientName + "";
+    }
+
+    public String getRecipientIbanString() {
+        return this.recipientIban + "";
+    }
+
+    public String getPaymentAmountString() {
+        return this.paymentAmount + "";
+    }
+
 }

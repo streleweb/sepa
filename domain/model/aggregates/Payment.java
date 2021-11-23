@@ -2,6 +2,7 @@ package domain.model.aggregates;
 
 import java.util.UUID;
 
+import application.utilityclasses.DoubleBigDecimalConverter;
 import domain.model.commands.PaymentCommand;
 import domain.model.valueobjects.AuftraggeberAdresse;
 import domain.model.valueobjects.AuftraggeberName;
@@ -42,11 +43,87 @@ public class Payment {
      */
     public Payment(PaymentCommand paymentcommand) {
         this.paymentId = new PaymentId(paymentcommand.getPaymentId());
-        this.recipientIban = recipientIban;
-        this.auftraggeberIban = auftraggeberIban;
-        this.auftraggeberName = auftraggeberName;
-        this.recipientName = recipientName;
-        this.paymentAmount = paymentAmount;
+        this.recipientIban = new Iban(paymentcommand.getRecipientIban());
+        this.auftraggeberIban = new Iban(paymentcommand.getAuftraggeberIban());
+        this.auftraggeberName = new AuftraggeberName(paymentcommand.getAuftraggeberName());
+        this.recipientName = new RecipientName(paymentcommand.getRecipientName());
+        this.paymentAmount = new PaymentAmount(
+                DoubleBigDecimalConverter.convertToBigDecimal(paymentcommand.getPaymentAmount()));
+
+        // here would be DOMAIN EVENT
+        System.out.println("Payment created in Aggregate Root");
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentId: " + this.paymentId + ", EmpfaengerIBAN: " + this.recipientIban + ", Auftragg.IBAN: "
+                + this.auftraggeberIban + ", Betrag in EUR: " + this.paymentAmount + "\n";
+    }
+
+    public PaymentId getPaymentId() {
+        return paymentId;
+    }
+
+    public Iban getRecipientIban() {
+        return recipientIban;
+    }
+
+    public Iban getAuftraggeberIban() {
+        return auftraggeberIban;
+    }
+
+    public AuftraggeberName getAuftraggeberName() {
+        return auftraggeberName;
+    }
+
+    public RecipientName getRecipientName() {
+        return recipientName;
+    }
+
+    public PaymentAmount getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public AuftraggeberAdresse getAuftraggeberAdresse() {
+        return auftraggeberAdresse;
+    }
+
+    public RecipientAdresse getRecipientAdresse() {
+        return recipientAdresse;
+    }
+
+    public VerwendungsZweck getVerwendungsZweck() {
+        return verwendungsZweck;
+    }
+
+    public ZahlungsReferenz getZahlungsReferenz() {
+        return zahlungsReferenz;
+    }
+
+    // get Strings
+
+    public String getPaymentIdString() {
+        return paymentId + "";
+    }
+
+    public String getRecipientIbanString() {
+        return recipientIban + "";
+    }
+
+    public String getAuftraggeberIbanString() {
+        return auftraggeberIban + "";
+    }
+
+    public String getAuftraggeberNameString() {
+        return auftraggeberName + "";
+    }
+
+    public String getRecipientNameString() {
+        return recipientName + "";
+    }
+
+    public String getPaymentAmountString() {
+        return paymentAmount + "";
     }
 
 }

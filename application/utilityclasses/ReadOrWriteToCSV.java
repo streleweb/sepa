@@ -61,11 +61,11 @@ public class ReadOrWriteToCSV {
     // write to aborted payments CSV
     public static void writeToAbortedPayments(PaymentCommand paymentCommand) throws IOException {
         // File abortedFile = new File("C:\\aborted.csv");
-        new FileOutputStream("C:\\aborted.csv", true).close();
+        new FileOutputStream("D:\\aborted.csv", true).close();
         // abortedFile.createNewFile(); // if file already exists will do nothing
         // FileOutputStream oFile = new FileOutputStream(yourFile, false);
 
-        String filePath = "C:\\aborted.csv";
+        String filePath = "D:\\aborted.csv";
         FileWriter fileWriter = new FileWriter(filePath);
 
         try {
@@ -106,7 +106,7 @@ public class ReadOrWriteToCSV {
         BufferedReader reader = null;
         try {
             String line = "";
-            reader = new BufferedReader(new FileReader("C:\\successful.csv"));
+            reader = new BufferedReader(new FileReader("D:\\successful.csv"));
             reader.readLine();
 
             while ((line = reader.readLine()) != null) {

@@ -51,7 +51,7 @@ public class UserMenu {
         System.out.println("\n\nWaehlen Sie bitte Ihre naechste Aktion:");
         System.out.println("\n1, Neue Zahlung mit Verwendungszweck starten.");
         System.out.println("2, Neue Zahlung mit Zahlungsreferenz beginnen.");
-        System.out.println("3, Erfolgreiche Zahlungen aus PsaudoDB anzeigen.");
+        System.out.println("3, Erfolgreiche Zahlungen aus PseudoDB anzeigen.");
         System.out.println("4, Gescheiterte Zahlungen aus PseudoDB anzeigen");
         System.out.println("5, Erfolgreiche Zahlungen aus successful.csv anzeigen.");
         System.out.println("6, Gescheiterte Zahlungen aus aborted.csv anzeigen");

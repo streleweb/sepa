@@ -1,3 +1,6 @@
+import java.util.List;
+
+import domain.model.aggregates.Payment;
 import userinterfaces.CommandLineController;
 
 public class UserFunctions {
@@ -26,7 +29,10 @@ public class UserFunctions {
     }
 
     public static void getSuccessfulPaymentsFromPseudoDB() {
-        commandLineController.getSuccessFulPaymentsFromDB();
+        List<Payment> successFromPseudoDB = commandLineController.getSuccessFulPaymentsFromDB();
+        for (Payment p : successFromPseudoDB) {
+            System.out.println(p.toString());
+        }
     }
 
     public static void getAbortedPaymentsFromPseudoDB() {

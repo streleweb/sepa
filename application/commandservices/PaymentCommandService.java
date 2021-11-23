@@ -22,6 +22,7 @@ public class PaymentCommandService {
         String uuid = uuidString.substring(0, uuidString.indexOf("-")); // from index 0 to - sign
         System.out.println("New uuid :" + uuid);
 
+        // id gets added now, so that if validation fails, no id is created beforehand
         paymentCommand.setPaymentId(uuid);
         // Actual root-aggregate receives the paymentCommand in its constructor
         // (commandhandler)

@@ -12,7 +12,7 @@ import domain.model.valueobjects.Iban;
  */
 
 public class BankclientDaoDummyImpl implements BankclientDao {
-    private ArrayList<Bankclient> listOfBankclients;
+    private ArrayList<Bankclient> listOfBankclients = new ArrayList<>();
 
     /**
      * Dummy Constructor, 3 Test instances are created when program is started.
@@ -28,26 +28,24 @@ public class BankclientDaoDummyImpl implements BankclientDao {
 
     @Override
     public void insertBankclient(Bankclient bankclient) {
-        // TODO Auto-generated method stub
-
+        listOfBankclients.add(bankclient);
     }
 
     @Override
-    public void updateBankclient(Bankclient bankclient) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void deleteBankclient(String uuid) {
-        // TODO Auto-generated method stub
-
+    public Boolean doesBankclientExist(Bankclient bankclient) {
+        return listOfBankclients.contains(bankclient);
     }
 
     @Override
     public List<Bankclient> getAllBankclients() {
 
         return this.listOfBankclients;
+    }
+
+    @Override
+    public void updateBankclient(Bankclient bankclient) {
+        listOfBankclients.remove(bankclient);
+        listOfBankclients.add(bankclient);
     }
 
 }

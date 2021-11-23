@@ -1,7 +1,5 @@
 package domain.model.valueobjects;
 
-import domain.model.entities.AuftraggeberName;
-
 /**
  * Implemented as value-object, the customer or bank-client itself is being
  * created in the BankClient-class. This way the data for every transaction is

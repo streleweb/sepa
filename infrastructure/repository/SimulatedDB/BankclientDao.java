@@ -10,7 +10,7 @@ public interface BankclientDao {
 
 	void updateBankclient(Bankclient bankclient);
 
-	void deleteBankclient(String uuid);
+	Boolean doesBankclientExist(Bankclient bankclient);
 
 	List<Bankclient> getAllBankclients();
 

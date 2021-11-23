@@ -6,7 +6,7 @@ package domain.model.commands;
  * paymentcommandservice-class.
  */
 public class PaymentCommand {
-    private String paymentId;
+    private String paymentId; // Id gets set later, when all validation is finished
     private String recipientIban;
     private String auftraggeberIban;
     private String auftraggeberName;
@@ -19,11 +19,10 @@ public class PaymentCommand {
     private String verwendungsZweck;
     private String zahlungsReferenz;
 
-    // all args constructor
-    public PaymentCommand(String paymentId, String recipientIban, String auftraggeberIban, String auftraggeberName,
-            String recipientName, double paymentAmount, String auftraggeberAdresse, String recipientAdresse,
-            String verwendungsZweck, String zahlungsReferenz) {
-        this.paymentId = paymentId;
+    // all args constructor with verwendungsZweck (without ID, since it ID is
+    // created when all validation passes)
+    public PaymentCommand(String recipientIban, String auftraggeberIban, String auftraggeberName, String recipientName,
+            double paymentAmount, String auftraggeberAdresse, String recipientAdresse, String verwendungsZweck) {
         this.recipientIban = recipientIban;
         this.auftraggeberIban = auftraggeberIban;
         this.auftraggeberName = auftraggeberName;
@@ -32,7 +31,20 @@ public class PaymentCommand {
         this.auftraggeberAdresse = auftraggeberAdresse;
         this.recipientAdresse = recipientAdresse;
         this.verwendungsZweck = verwendungsZweck;
+    }
 
+    // all args constructor with zahlungsReferenz (without ID, since it ID is
+    // created when all validation passes)
+    public PaymentCommand(double paymentAmount, String recipientIban, String auftraggeberIban, String auftraggeberName,
+            String recipientName, String auftraggeberAdresse, String recipientAdresse, String zahlungsReferenz) {
+        this.recipientIban = recipientIban;
+        this.auftraggeberIban = auftraggeberIban;
+        this.auftraggeberName = auftraggeberName;
+        this.recipientName = recipientName;
+        this.paymentAmount = paymentAmount;
+        this.auftraggeberAdresse = auftraggeberAdresse;
+        this.recipientAdresse = recipientAdresse;
+        this.zahlungsReferenz = zahlungsReferenz;
     }
 
     // basic data constructor

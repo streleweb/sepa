@@ -51,12 +51,8 @@ public class UserMenu {
         System.out.println("\n\nWaehlen Sie bitte Ihre naechste Aktion:");
         System.out.println("\n1, Neue Zahlung mit Verwendungszweck starten.");
         System.out.println("2, Neue Zahlung mit Zahlungsreferenz beginnen.");
-        System.out.println("3, Erfolgreiche Zahlungen aus PseudoDB anzeigen.");
-        System.out.println("4, Gescheiterte Zahlungen aus PseudoDB anzeigen");
-        System.out.println("5, Erfolgreiche Zahlungen aus successful.csv anzeigen.");
-        System.out.println("6, Gescheiterte Zahlungen aus aborted.csv anzeigen");
 
-        System.out.println("7, Quit.");
+        System.out.println("3, Quit.");
 
         int choice = Integer.parseInt(scan.nextLine());
 
@@ -70,23 +66,10 @@ public class UserMenu {
             UserFunctions.zahlungsReferenzPayment();
             break;
         case 3:
-            UserFunctions.getSuccessfulPaymentsFromPseudoDB();
-            break;
-        case 4:
-            UserFunctions.getAbortedPaymentsFromPseudoDB();
-            break;
-        case 5:
-            UserFunctions.getSuccessfulPaymentsFromCSV();
-            break;
-        case 6:
-            UserFunctions.getAbortedPaymentsFromCSV();
-            break;
-
-        case 7:
             userQuits = true;
             break;
         default:
-            System.out.println("Bitte eine Zahl zwischen 1 und 5 eingeben!");
+            System.out.println("Bitte eine Zahl zwischen 1 und 3 eingeben!");
             break;
         }// end switch case
     }// end userMenu()

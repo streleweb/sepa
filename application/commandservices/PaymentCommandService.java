@@ -57,16 +57,14 @@ public class PaymentCommandService {
             paymentsDao.insertNewAbortedPayment(paymentCommand);
 
             try {
-                ReadOrWriteToCSV.writeToSuccessfulPayments(paymentCommand);
+                ReadOrWriteToCSV.writeToAbortedPayments(paymentCommand);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
-            System.out.println("Payment aborted and saved to DB and CSV. " + paymentCommand.getPaymentId()
-                    + " from Customer " + paymentCommand.getAuftraggeberName() + " to Customer "
-                    + paymentCommand.getRecipientName() + " with Amount: EUR " + paymentCommand.getPaymentAmount()
-                    + " [FromPaymentCommandService]");
+            System.out.println("\nPayment aborted and saved to DB and CSV. " + " From Customer "
+                    + paymentCommand.getAuftraggeberName() + " to Customer " + paymentCommand.getRecipientName()
+                    + " with Amount: EUR " + paymentCommand.getPaymentAmount() + " [FromPaymentCommandService]\n");
 
             return null;
         }

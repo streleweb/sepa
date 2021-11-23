@@ -61,17 +61,17 @@ public class ReadOrWriteToCSV {
     // write to aborted payments CSV
     public static void writeToAbortedPayments(PaymentCommand paymentCommand) throws IOException {
         // File abortedFile = new File("C:\\aborted.csv");
-        new FileOutputStream("D:\\aborted.csv", true).close();
+        // new FileOutputStream("D:\\aborted.csv", true).close();
         // abortedFile.createNewFile(); // if file already exists will do nothing
         // FileOutputStream oFile = new FileOutputStream(yourFile, false);
 
-        String filePath = "D:\\aborted.csv";
+        String filePath = "D:" + File.separator + "aborted.csv";
         FileWriter fileWriter = new FileWriter(filePath);
 
         try {
 
             fileWriter.append("id, auftraggIBAN, recipientIBAN, auftraggNAME, recipientNAME, amount");
-            fileWriter.append("\\n");
+            // fileWriter.append("\\n");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentId()));
             fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getAuftraggeberIban()));
@@ -83,7 +83,7 @@ public class ReadOrWriteToCSV {
             fileWriter.append(String.valueOf(paymentCommand.getRecipientName()));
             fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentAmount() + "")); // cast to String
-            fileWriter.append("\\n");
+            fileWriter.append("\n");
 
         } catch (FileNotFoundException e) {
             System.err.println("Could not find File");

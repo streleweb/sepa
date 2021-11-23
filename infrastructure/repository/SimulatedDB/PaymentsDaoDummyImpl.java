@@ -36,9 +36,10 @@ public class PaymentsDaoDummyImpl implements PaymentsDao {
 
     @Override
     public List<Payment> getAllSuccessfulPayments() {
-        for (Payment payment : listOfSuccessfulPayments) {
-            System.out.println(payment.toString());
+        System.out.println("Getting successPayments from PseudoDB...");
 
+        for (int i = 0; i < listOfSuccessfulPayments.size(); i++) {
+            System.out.println(listOfSuccessfulPayments.get(i).toString());
         }
 
         return this.listOfSuccessfulPayments;

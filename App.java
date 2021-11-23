@@ -12,8 +12,14 @@ public class App {
 
         final CommandLineController commandLineController = new CommandLineController();
 
-        commandLineController.newVerwendungsZweckPayment("recipientIban", "auftraggeberIban", "auftraggeberName",
-                "recipientName", 100.0, "auftraggeberAdresse", "recipientAdresse", "verwendungsZweck");
+        try {
+            commandLineController.newVerwendungsZweckPayment("12333333333333333333", "12333333333333333333",
+                    "auftraggeberName", "recipientName", 100.0, "auftraggeberAdresse", "recipientAdresse",
+                    "verwendungsZweck");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 }

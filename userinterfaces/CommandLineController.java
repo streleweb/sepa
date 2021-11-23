@@ -28,11 +28,13 @@ public class CommandLineController {
      * 
      * Calls the paymentCommandService, which performs the business-logic.
      * 
+     * @throws Exception
+     * 
      * @params The User-Input Data
      */
     public PaymentId newVerwendungsZweckPayment(String recipientIban, String auftraggeberIban, String auftraggeberName,
             String recipientName, double paymentAmount, String auftraggeberAdresse, String recipientAdresse,
-            String verwendungsZweck) {
+            String verwendungsZweck) throws Exception {
 
         // Builder with verwendungsZweck
         PaymentResource paymentResource = new PaymentResource.Builder(recipientIban, auftraggeberIban, recipientName,

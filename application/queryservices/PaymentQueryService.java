@@ -3,6 +3,7 @@ package application.queryservices;
 import java.util.List;
 
 import domain.model.aggregates.Payment;
+import domain.model.commands.PaymentCommand;
 import infrastructure.repository.SimulatedDB.PaymentsDao;
 
 /**
@@ -23,13 +24,8 @@ public class PaymentQueryService {
     }
 
     // get list of all aborted payments
-    public List<Payment> getListOfAllAbortedPayments() {
+    public List<PaymentCommand> getListOfAllAbortedPayments() {
         return paymentsDao.getAllAbortedPayments();
-    }
-
-    // get list of all payments (success & aborted)
-    public List<Payment> getCompleteListOfAllPayments() {
-        return paymentsDao.getListOfAllPayments();
     }
 
 }

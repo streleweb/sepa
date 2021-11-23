@@ -32,10 +32,15 @@ public class ReadOrWriteToCSV {
 
             fileWriter.append("id, auftraggIBAN, recipientIBAN, auftraggNAME, recipientNAME, amount");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentId()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getAuftraggeberIban()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getRecipientIban()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getAuftraggeberName()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getRecipientName()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentAmount() + "")); // cast to String
             fileWriter.append("\n");
 
@@ -66,13 +71,19 @@ public class ReadOrWriteToCSV {
         try {
 
             fileWriter.append("id, auftraggIBAN, recipientIBAN, auftraggNAME, recipientNAME, amount");
+            fileWriter.append("\\n");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentId()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getAuftraggeberIban()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getRecipientIban()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getAuftraggeberName()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getRecipientName()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(paymentCommand.getPaymentAmount() + "")); // cast to String
-            fileWriter.append("\n");
+            fileWriter.append("\\n");
 
         } catch (FileNotFoundException e) {
             System.err.println("Could not find File");

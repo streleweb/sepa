@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.model.aggregates.Payment;
+import domain.model.commands.PaymentCommand;
 
 public class PaymentsDaoDummyImpl implements PaymentsDao {
     private ArrayList<Payment> listOfSuccessfulPayments = new ArrayList<>();
-    private ArrayList<Payment> listOfAbortedPayments = new ArrayList<>();
-    private ArrayList<Payment> listOfAllPayments = new ArrayList<>();
+    private ArrayList<PaymentCommand> listOfAbortedPayments = new ArrayList<>();
 
     @Override
     public void insertNewSuccessfulPayment(Payment payment) {
         listOfSuccessfulPayments.add(payment);
-        listOfAllPayments.add(payment);
         // write it into CSV-File aswell (utilityclasses)
     }
 
@@ -23,24 +22,19 @@ public class PaymentsDaoDummyImpl implements PaymentsDao {
     }
 
     @Override
-    public void insertNewAbortedPayment(Payment payment) {
-        this.listOfAbortedPayments.add(payment);
-        listOfAllPayments.add(payment);
+    public void insertNewAbortedPayment(PaymentCommand paymentCommand) {
+        this.listOfAbortedPayments.add(paymentCommand);
+
     }
 
     @Override
-    public List<Payment> getAllAbortedPayments() {
+    public List<PaymentCommand> getAllAbortedPayments() {
         return this.listOfAbortedPayments;
     }
 
     @Override
     public Boolean doesPaymentExist(Payment payment) {
-        return listOfAllPayments.contains(payment); // true or false
-    }
-
-    @Override
-    public ArrayList<Payment> getListOfAllPayments() {
-        return listOfAllPayments;
+        return listOfSuccessfulPayments.contains(payment);// true or false
     }
 
 }

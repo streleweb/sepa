@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class UserMenu {
     static Scanner scan = new Scanner(System.in);
     static boolean userQuits = false;
-    static String name;
     static int cmdClear = 25; // for scrolldown
 
     public static void run() {
@@ -46,6 +45,7 @@ public class UserMenu {
     }
 
     static void userMenu() {
+        scan.nextLine();
         // maybe print last payments here
 
         System.out.println("\n\nWaehlen Sie bitte Ihre naechste Aktion:");
@@ -58,7 +58,6 @@ public class UserMenu {
 
         System.out.println("7, Quit.");
 
-        scan.nextLine();
         int choice = Integer.parseInt(scan.nextLine());
 
         clearScreen();
@@ -89,7 +88,7 @@ public class UserMenu {
         default:
             System.out.println("Bitte eine Zahl zwischen 1 und 5 eingeben!");
             break;
-        }// end switch(choice)
-    }// end userMenu
+        }// end switch case
+    }// end userMenu()
 
 }

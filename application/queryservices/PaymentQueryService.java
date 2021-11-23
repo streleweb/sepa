@@ -6,13 +6,15 @@ import application.utilityclasses.ReadOrWriteToCSV;
 import domain.model.aggregates.Payment;
 import domain.model.commands.PaymentCommand;
 import infrastructure.repository.SimulatedDB.PaymentsDao;
+import infrastructure.repository.SimulatedDB.PaymentsDaoDummyImpl;
 
 /**
  * Payment Query Services business logic could in production be extended with an
  * interface for SOLID principles
  */
 public class PaymentQueryService {
-    private PaymentsDao paymentsDao; // would normally be JPA repository via dependency injection
+    private PaymentsDao paymentsDao = new PaymentsDaoDummyImpl(); // would normally be JPA repository via dependency
+                                                                  // injection
 
     // checks if the payment already exists
     public Boolean doesPaymentAlreadyExist(Payment payment) {

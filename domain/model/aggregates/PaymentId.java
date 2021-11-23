@@ -7,4 +7,8 @@ public final class PaymentId {
         this.paymentIdentifier = paymentIdentifier;
     }
 
+    public String getPaymentIdentifier() {
+        return paymentIdentifier;
+    }
+
 }

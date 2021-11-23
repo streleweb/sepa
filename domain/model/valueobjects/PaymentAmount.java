@@ -20,4 +20,8 @@ public final class PaymentAmount {
         return amount;
     }
 
+    public String getAsString() {
+        return "" + amount;
+    }
+
 }

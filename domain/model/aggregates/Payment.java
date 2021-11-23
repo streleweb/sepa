@@ -56,8 +56,10 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "PaymentId: " + this.paymentId + ", EmpfaengerIBAN: " + this.recipientIban + ", Auftragg.IBAN: "
-                + this.auftraggeberIban + ", Betrag in EUR: " + this.paymentAmount + "\n";
+        return "PaymentId: " + this.paymentId.getPaymentIdentifier() + ", EmpfaengerIBAN: "
+                + this.recipientIban.getIbanString() + ", Auftragg.IBAN: " + this.auftraggeberIban.getIbanString()
+                + ", Auftraggebername: " + this.auftraggeberName.getAuftraggeberName() + ", Empfaenger: "
+                + this.recipientName.getrecipientName() + ", Betrag in EUR: " + this.paymentAmount.getAsString() + "\n";
     }
 
     public PaymentId getPaymentId() {
@@ -98,32 +100,6 @@ public class Payment {
 
     public ZahlungsReferenz getZahlungsReferenz() {
         return zahlungsReferenz;
-    }
-
-    // get Strings
-
-    public String getPaymentIdString() {
-        return paymentId + "";
-    }
-
-    public String getRecipientIbanString() {
-        return recipientIban + "";
-    }
-
-    public String getAuftraggeberIbanString() {
-        return auftraggeberIban + "";
-    }
-
-    public String getAuftraggeberNameString() {
-        return auftraggeberName + "";
-    }
-
-    public String getRecipientNameString() {
-        return recipientName + "";
-    }
-
-    public String getPaymentAmountString() {
-        return paymentAmount + "";
     }
 
 }

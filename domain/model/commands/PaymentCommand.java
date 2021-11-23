@@ -146,22 +146,6 @@ public class PaymentCommand {
 
     // get Strings
 
-    public String getAuftraggeberNameString() {
-        return this.auftraggeberName + "";
-    }
-
-    public String getAuftraggeberIbanString() {
-        return this.auftraggeberIban + "";
-    }
-
-    public String getRecipientNameString() {
-        return this.recipientName + "";
-    }
-
-    public String getRecipientIbanString() {
-        return this.recipientIban + "";
-    }
-
     public String getPaymentAmountString() {
         return this.paymentAmount + "";
     }
